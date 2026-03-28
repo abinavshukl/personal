@@ -1,0 +1,464 @@
+:root {
+  --rose-deep: #9f1239;
+  --rose-main: #e11d48;
+  --rose-soft: #ffe4e6;
+  --rose-glass: rgba(255, 255, 255, 0.72);
+  --shadow-soft: 0 24px 60px rgba(190, 24, 93, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(255, 228, 230, 0.9), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(251, 207, 232, 0.85), transparent 28%),
+    linear-gradient(180deg, #fff7f8 0%, #fff1f4 100%);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-romantic {
+  font-family: "Dancing Script", cursive;
+}
+
+.journey-shell {
+  position: relative;
+  box-shadow: var(--shadow-soft);
+}
+
+.journey-shell::after {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border-radius: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  pointer-events: none;
+}
+
+.page-glow {
+  position: fixed;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(10px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.page-glow-left {
+  top: -5rem;
+  left: -4rem;
+  width: 16rem;
+  height: 16rem;
+  background: rgba(253, 164, 175, 0.45);
+}
+
+.page-glow-right {
+  right: -5rem;
+  bottom: -4rem;
+  width: 18rem;
+  height: 18rem;
+  background: rgba(244, 114, 182, 0.32);
+}
+
+.hearts-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hearts-layer-back {
+  z-index: 0;
+}
+
+.hearts-layer-front {
+  z-index: 25;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -10vh;
+  left: var(--heart-left);
+  width: var(--heart-size);
+  height: var(--heart-size);
+  opacity: var(--heart-opacity);
+  transform: rotate(45deg);
+  animation:
+    heart-rise var(--float-duration) linear infinite,
+    heart-sway var(--sway-duration) ease-in-out infinite alternate;
+  animation-delay: var(--float-delay);
+}
+
+.floating-heart.front-heart {
+  filter: drop-shadow(0 6px 10px rgba(244, 114, 182, 0.22));
+}
+
+.floating-heart,
+.floating-heart::before,
+.floating-heart::after {
+  background: linear-gradient(145deg, rgba(251, 113, 133, 0.65), rgba(244, 114, 182, 0.42));
+}
+
+.front-heart,
+.front-heart::before,
+.front-heart::after {
+  background: linear-gradient(145deg, rgba(251, 113, 133, 0.82), rgba(244, 114, 182, 0.62));
+}
+
+.floating-heart::before,
+.floating-heart::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.floating-heart::before {
+  top: -50%;
+  left: 0;
+}
+
+.floating-heart::after {
+  top: 0;
+  left: -50%;
+}
+
+.step-panel {
+  opacity: 0;
+  transform: translateY(26px) scale(0.985);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.step-panel.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.step-panel.instant {
+  transition: none;
+}
+
+.step-panel.is-leaving {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.985);
+}
+
+.floating-bounce {
+  animation: float-bounce 1.9s ease-in-out infinite;
+}
+
+.soft-pulse {
+  animation: soft-pulse 2.3s ease-in-out infinite;
+}
+
+.journey-btn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.journey-btn:hover {
+  transform: translateY(-2px);
+}
+
+.journey-btn:disabled {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.journey-btn::after {
+  content: "";
+  position: absolute;
+  inset: auto -30% -90%;
+  height: 180%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: rotate(12deg);
+  transition: transform 0.45s ease;
+}
+
+.journey-btn:hover::after {
+  transform: translateX(25%) rotate(12deg);
+}
+
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 18px 34px rgba(225, 29, 72, 0.11);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    box-shadow 0.25s ease;
+}
+
+.gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(76, 5, 25, 0.18) 100%);
+  pointer-events: none;
+}
+
+.gallery-card.is-swapping {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.gallery-image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery-card:hover .gallery-image {
+  transform: scale(1.04);
+}
+
+.gallery-open-button {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.gallery-caption {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 1;
+}
+
+.tracker-heart {
+  color: #f9a8d4;
+  stroke-width: 1.8;
+  fill: transparent;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    fill 0.3s ease;
+}
+
+.tracker-heart.active {
+  color: #ef4444;
+  fill: currentColor;
+  transform: scale(1.12);
+}
+
+.quiz-option {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.quiz-option:hover {
+  transform: translateY(-2px);
+}
+
+.quiz-option.is-selected {
+  background: linear-gradient(135deg, rgba(255, 228, 230, 1), rgba(255, 241, 242, 0.96));
+  border-color: rgba(251, 113, 133, 0.85);
+  box-shadow: 0 16px 28px rgba(251, 113, 133, 0.18);
+}
+
+.letter-button {
+  border: 1px dashed rgba(251, 113, 133, 0.5);
+  box-shadow: 0 22px 36px rgba(251, 113, 133, 0.16);
+}
+
+.quote-reveal {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 241, 242, 0.9)),
+    var(--rose-glass);
+  box-shadow: 0 22px 44px rgba(225, 29, 72, 0.12);
+}
+
+.promise-photo {
+  box-shadow:
+    0 0 0 10px rgba(255, 255, 255, 0.72),
+    0 20px 36px rgba(225, 29, 72, 0.16);
+}
+
+.memory-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(76, 5, 25, 0.52);
+  backdrop-filter: blur(12px);
+}
+
+.memory-lightbox[hidden] {
+  display: none;
+}
+
+.memory-lightbox-card {
+  position: relative;
+  width: min(92vw, 760px);
+  max-height: min(88vh, 920px);
+  overflow: hidden;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 241, 242, 0.92));
+  box-shadow: 0 30px 60px rgba(76, 5, 25, 0.25);
+}
+
+.memory-lightbox-image {
+  display: block;
+  width: 100%;
+  max-height: 62vh;
+  object-fit: cover;
+}
+
+.memory-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+.fallback-image {
+  object-fit: cover;
+  background: linear-gradient(135deg, #ffe4e6, #fff1f2);
+}
+
+@keyframes float-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 20px 34px rgba(251, 113, 133, 0.18);
+  }
+
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 24px 40px rgba(251, 113, 133, 0.26);
+  }
+}
+
+@keyframes heart-rise {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(45deg) scale(0.7);
+  }
+
+  20% {
+    opacity: var(--heart-opacity);
+  }
+
+  100% {
+    transform: translate3d(0, -120vh, 0) rotate(45deg) scale(1.06);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-sway {
+  0% {
+    margin-left: calc(var(--sway-distance) * -1);
+  }
+
+  100% {
+    margin-left: var(--sway-distance);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-glow-left,
+  .page-glow-right {
+    opacity: 0.45;
+    filter: blur(20px);
+  }
+
+  .journey-shell::after {
+    inset: 0.65rem;
+    border-radius: 1.35rem;
+  }
+
+  .journey-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gallery-card,
+  .memory-lightbox-card {
+    border-radius: 1.5rem;
+  }
+
+  .gallery-caption {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .memory-lightbox {
+    padding: 0.75rem;
+    align-items: center;
+  }
+
+  .memory-lightbox-card {
+    width: 100%;
+    max-height: 90vh;
+  }
+
+  .memory-lightbox-image {
+    max-height: 52vh;
+  }
+
+  .memory-lightbox-close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .hearts-layer-front {
+    z-index: 18;
+  }
+}
+
+@media (max-width: 420px) {
+  .journey-shell {
+    border-radius: 1.5rem;
+  }
+
+  .journey-shell::after {
+    inset: 0.55rem;
+    border-radius: 1.1rem;
+  }
+
+  .memory-lightbox-image {
+    max-height: 48vh;
+  }
+}
