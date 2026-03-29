@@ -370,7 +370,7 @@ function renderIntroStep() {
           type="button"
           data-action="goto-step"
           data-step="1"
-          class="journey-btn inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
+          class="journey-btn main-journey-button inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
         >
           <span>Enter Our World</span>
           <i data-lucide="star" class="h-4 w-4"></i>
@@ -490,7 +490,7 @@ function renderGalleryStep() {
           type="button"
           data-action="goto-step"
           data-step="2"
-          class="journey-btn inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
+          class="journey-btn main-journey-button inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
         >
           <span>Next Chapter</span>
           <i data-lucide="sparkles" class="h-4 w-4"></i>
@@ -635,7 +635,7 @@ function renderQuizStep() {
           type="button"
           data-action="goto-step"
           data-step="3"
-          class="journey-btn inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold ${answeredCount === QUIZ_QUESTIONS.length ? "bg-rose-500 text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]" : "border border-rose-200 bg-white text-rose-300"}"
+          class="journey-btn main-journey-button inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold ${answeredCount === QUIZ_QUESTIONS.length ? "bg-rose-500 text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]" : "border border-rose-200 bg-white text-rose-300"}"
           ${answeredCount === QUIZ_QUESTIONS.length ? "" : "disabled"}
         >
           <span>Lock in My Love</span>
@@ -700,7 +700,7 @@ function renderOpenedLetter() {
         type="button"
         data-action="goto-step"
         data-step="4"
-        class="journey-btn inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
+        class="journey-btn main-journey-button inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
       >
         <span>Final Destination</span>
           <i data-lucide="star" class="h-4 w-4"></i>
@@ -756,7 +756,7 @@ function renderPromiseStep() {
             <button
               type="button"
               data-action="restart"
-              class="journey-btn inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
+              class="journey-btn main-journey-button inline-flex items-center gap-2 rounded-full bg-rose-500 px-6 py-3 text-base font-semibold text-white shadow-[0_18px_30px_rgba(244,63,94,0.22)]"
             >
               <span>Restart Our Journey</span>
               <i data-lucide="refresh-cw" class="h-4 w-4"></i>
@@ -775,7 +775,7 @@ function prepareGallery() {
 
 function startGalleryRotation() {
   stopGalleryRotation();
-  state.galleryTimer = window.setInterval(rotateGalleryPhoto, 4000);
+  state.galleryTimer = window.setInterval(rotateGalleryPhoto, 3000);
 }
 
 function stopGalleryRotation() {
